@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function task1(n) {
+            const array = [];
+            const result = [];
+            for (let i = 0; i < n; i++) {
+                const c = Math.round((Math.random() - 0.5) * 10)
+                array[i] = c
+            }
+            for (let i = 0; i < n; i++) {
+                result.push(array[i])
+                if (array[i] % 2 == 0) {
+                    result.push(array[i])
+                }
+            }
+            console.log(array, result)
+        }
+        function task2(n) {
+            let right = true;
+            let down = true;
+            let row = -1;
+            let col = -1;
+
+            const array = []
+            const result = []
+            for (let i = 0; i < n; i++) {
+                array.push([])
+                for (let j = 0; j < n; j++) {
+                    const c = Math.round((Math.random() - 0.5) * 50)
+                    array[i][j] = c
+                }
+            }
+
+            for (let i = 0; i < 2 * n - 1; i++) {
+                let length = n;
+                if (i % 2 == 0) {
+                    if (right) {
+                        row++;
+                        for (let j = row; j < length; j++) {
+                            result.push(array[row][j])
+                        }
+                    } else {
+                        for (let j = n - row - 1; j >= n - row + length; j--) {
+                            result.push(array[length - row][j])
+                        }
+
+                    }
+                    right = !right
+                    length--;
+                } else {
+                    if (down) {
+                        col++;
+                        for (let j = col; j < length; j++) {
+                            result.push(array[j][length - col])
+                        }
+
+                    } else {
+                        for (let j = n - col - 1; j >= n - col + length; j--) {
+                            result.push(array[j][col])
+                        }
+                    }
+                    down = !down
+                }
+            }
+            console.log(array, result)
+        }
+        function task3() {
+
+        }
+        function task4() {
+
+        }
+        function task5() {
+
+        }
+    </script>
+</body>
+
+</html>
