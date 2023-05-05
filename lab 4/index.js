@@ -1,3 +1,63 @@
+function task4_1() {
+    // объявляем константы
+    const PRICE = 49; // цена одной открытки
+    const COINS = [1, 2, 5, 10]; // значение монет
+    const NOTES = [50, 100, 200, 500, 1000, 2000, 5000]; // значение купюр
+
+    // объявляем переменные
+    let theme = parseInt(prompt("Введите номер темы открытки (1 - Новый год, 2 - День рождения, 3 - Народное единство):"));
+    let variant = prompt("Введите вариант открытки (A, B или C):");
+    let payment = parseInt(prompt("Введите купюру оплаты:"));
+
+    // проверяем правильность ввода
+    if (theme < 1 || theme > 3) {
+    console.log("Ошибка: неправильный номер темы");
+    } else if (variant != "A" && variant != "B" && variant != "C") {
+    console.log("Ошибка: неправильный вариант открытки");
+    } else if (isNaN(payment) || payment < PRICE) {
+    console.log("Ошибка: неправильное значение купюры");
+    } else {
+    // вычисляем стоимость заказа
+    let total = PRICE;
+    
+    // формируем сообщение для выбранной темы и варианта
+    let message = "Открытка ";
+    switch (theme) {
+        case 1:
+        message += "«С Новым годом!»";
+        break;
+        case 2:
+        message += "«С Днем рождения!»";
+        break;
+        case 3:
+        message += "«С Днем народного единства!»";
+        break;
+    }
+    message += ", вариант " + variant;
+    
+    // вычисляем сдачу
+    let change = payment - total;
+    let changeCoins = "";
+    let changeNotes = "";
+    if (change > 0) {
+        for (let i = NOTES.length - 1; i >= 0; i--) {
+        while (change >= NOTES[i]) {
+            changeNotes += NOTES[i] + " руб. ";
+            change -= NOTES[i];
+        }
+        }
+        for (let i = COINS.length - 1; i >= 0; i--) {
+        while (change >= COINS[i]) {
+            changeCoins += COINS[i] + " руб. ";
+            change -= COINS[i];
+        }
+        }
+    }
+    
+    // выводим результаты
+    console.log(message + " — " + total + " руб. (" + payment + " руб. получено, сдача " + changeNotes + changeCoins + ")");
+}
+}
 function task4_2() {
     const year = 1826;
     let s = 0;
