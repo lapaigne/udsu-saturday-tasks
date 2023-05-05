@@ -54,3 +54,25 @@ function task4_4() {
         console.log('Оценка "Плохо"');
     }
 }
+function task4_5() {
+    const name = ['Селиванова', 'Фокина', 'Грачев', 'Лукина', 'Карасев', 'Павлов', 'Новикова', 'Клюев', 'Чернов', 'Кириллова'];
+    const time = ['13.5', '12', '20.3', '11.4', '17.5', '16.7', '14.2', '16.7', '13.1', '12.5'];
+    let s;
+    let t;
+    console.log(name, time);
+    for(let i =0; i < 10; i ++) {
+        for(let j =0; j < 10; j ++) {
+            if (time[j] > time[j + 1]) {
+                s = name[j];
+                name[j] = name[j + 1];
+                name[j + 1] = s;
+                t = time[j];
+                time[j] = time[j + 1];
+                time[j + 1] = t;
+            }
+        }
+    }
+    for(let i = 0; i < 4; i++) {
+        console.log(name[i], '-', time[i]);
+    }
+}
