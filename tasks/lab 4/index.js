@@ -1,74 +1,61 @@
 function task4_1() {
-    // объявляем константы
-    const PRICE = 49; // цена одной открытки
-    const COINS = [1, 2, 5, 10]; // значение монет
-    const NOTES = [50, 100, 200, 500, 1000, 2000, 5000]; // значение купюр
+    const PRICE = 49;
+    const COINS = [1, 2, 5, 10];
+    const NOTES = [50, 100, 200, 500, 1000, 2000, 5000];
 
-    // объявляем переменные
     let theme = parseInt(prompt("Введите номер темы открытки (1 - Новый год, 2 - День рождения, 3 - Народное единство):"));
     let variant = prompt("Введите вариант открытки (A, B или C):");
     let payment = parseInt(prompt("Введите купюру оплаты:"));
 
-    // проверяем правильность ввода
     if (theme < 1 || theme > 3) {
-    console.log("Ошибка: неправильный номер темы");
+        console.log("Ошибка: неправильный номер темы");
     } else if (variant != "A" && variant != "B" && variant != "C") {
-    console.log("Ошибка: неправильный вариант открытки");
+        console.log("Ошибка: неправильный вариант открытки");
     } else if (isNaN(payment) || payment < PRICE) {
-    console.log("Ошибка: неправильное значение купюры");
+        console.log("Ошибка: неправильное значение купюры");
     } else {
-    // вычисляем стоимость заказа
-    let total = PRICE;
-    
-    // формируем сообщение для выбранной темы и варианта
-    let message = "Открытка ";
-    switch (theme) {
-        case 1:
-        message += "«С Новым годом!»";
-        break;
-        case 2:
-        message += "«С Днем рождения!»";
-        break;
-        case 3:
-        message += "«С Днем народного единства!»";
-        break;
+        let total = PRICE;
+
+        let message = "Открытка ";
+        switch (theme) {
+            case 1:
+                message += "«С Новым годом!»";
+                break;
+            case 2:
+                message += "«С Днем рождения!»";
+                break;
+            case 3:
+                message += "«С Днем народного единства!»";
+                break;
+        }
+        message += ", вариант " + variant;
+
+        let change = payment - total;
+        let changeCoins = "";
+        let changeNotes = "";
+        if (change > 0) {
+            for (let i = NOTES.length - 1; i >= 0; i--) {
+                while (change >= NOTES[i]) {
+                    changeNotes += NOTES[i] + " руб. ";
+                    change -= NOTES[i];
+                }
+            }
+            for (let i = COINS.length - 1; i >= 0; i--) {
+                while (change >= COINS[i]) {
+                    changeCoins += COINS[i] + " руб. ";
+                    change -= COINS[i];
+                }
+            }
+        }
+        console.log(message + " — " + total + " руб. (" + payment + " руб. получено, сдача " + changeNotes + changeCoins + ")");
     }
-    message += ", вариант " + variant;
-    
-    // вычисляем сдачу
-    let change = payment - total;
-    let changeCoins = "";
-    let changeNotes = "";
-    if (change > 0) {
-        for (let i = NOTES.length - 1; i >= 0; i--) {
-        while (change >= NOTES[i]) {
-            changeNotes += NOTES[i] + " руб. ";
-            change -= NOTES[i];
-        }
-        }
-        for (let i = COINS.length - 1; i >= 0; i--) {
-        while (change >= COINS[i]) {
-            changeCoins += COINS[i] + " руб. ";
-            change -= COINS[i];
-        }
-        }
-    }
-    
-    // выводим результаты
-    console.log(message + " — " + total + " руб. (" + payment + " руб. получено, сдача " + changeNotes + changeCoins + ")");
-}
 }
 function task4_2() {
     const year = 1826;
-    let s = 0;
-    let n = 0;
     let money = 24;
-    for(let i = 0; i < 2023 - year; i++) {
-        s = money * 6 / 100
-        money += s;
+    for (let i = 0; i < 2023 - year; i++) {
+        money *= 1.06
         money = Math.round(money);
-        n++;
-        console.log(money);
     }
     console.log(money);
 }
@@ -77,7 +64,7 @@ function task4_3() {
     let n = num;
     let orig = Number(num);
     let result = 0;
-    for(let i = 0; i < n.length; i++) {
+    for (let i = 0; i < n.length; i++) {
         result = result * 10 + num % 10;
         num = Math.floor(num / 10);
     }
@@ -90,7 +77,7 @@ function task4_4() {
     function rnd() {
         return Math.round(Math.random() * (9 - 1) + 1);
     }
-    for(let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         num1 = rnd();
         num2 = rnd();
         s = num1 * num2;
@@ -120,8 +107,8 @@ function task4_5() {
     let s;
     let t;
     console.log(name, time);
-    for(let i =0; i < 10; i ++) {
-        for(let j =0; j < 10; j ++) {
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
             if (time[j] > time[j + 1]) {
                 s = name[j];
                 name[j] = name[j + 1];
@@ -132,7 +119,7 @@ function task4_5() {
             }
         }
     }
-    for(let i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
         console.log(name[i], '-', time[i]);
     }
 }

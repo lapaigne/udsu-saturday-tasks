@@ -10,7 +10,8 @@
         }
         for (let i = 0; i < n; i++) {
             b.push(a[i])
-            if (a % 2 === 0) {
+            if (a[i] % 2 == 0) {
+                // console.log('repushed')
                 b.push(a[i])
             }
         }
